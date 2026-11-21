@@ -76,7 +76,9 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel="icon" href="../wp-content/uploads/2025/05/WhatsApp-Image-2025-05-07-at-06.39.31-1-scaled.jpeg" sizes="192x192" />
 <link rel="apple-touch-icon" href="../wp-content/uploads/2025/05/WhatsApp-Image-2025-05-07-at-06.39.31-1-scaled.jpeg" />
 <meta name="msapplication-TileImage" content="../wp-content/uploads/2025/05/WhatsApp-Image-2025-05-07-at-06.39.31-1-scaled.jpeg" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" /></head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<style id="kg-form-style">.kg-form-notice{font-size:13px;line-height:1.6;margin:10px auto 0;color:rgba(255,255,255,.85);text-align:center;max-width:640px}.kg-form-notice a{color:inherit;text-decoration:underline}.kg-form-status{font-size:15px;font-weight:600;margin:8px auto 0;text-align:center;max-width:640px;color:#b3261e;background:rgba(255,255,255,.92);border-radius:6px;padding:0 10px}.kg-form-status:empty{display:none}.kg-form-status a{color:inherit;text-decoration:underline}</style>
+</head>
 <body class="rtl wp-singular page-template page-template-elementor_canvas page page-id-3453 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor acwp-readable-arial hello-elementor-default elementor-default elementor-template-canvas elementor-kit-2734 elementor-page elementor-page-3453">
 			<div data-elementor-type="wp-page" data-elementor-id="3453" class="elementor elementor-3453" data-elementor-post-type="page">
 				<div class="elementor-element elementor-element-f48bb34 e-con-full e-flex e-con e-parent" data-id="f48bb34" data-element_type="container" data-e-type="container">
@@ -1507,13 +1509,76 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
             });
         });
 
-        // Form submission (prevent default for demo)
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                alert('תודה! נחזור אליך בהקדם.');
+        // Lead forms: send to the office CRM (lead.im) and show thanks ONLY after the CRM confirms receipt
+        (function () {
+            const ENDPOINT = 'https://api.lead.im/v2/submit?lm_form=90425&lm_key=f5f1c5dfb5';
+            const THANKS = '../tnx/';
+            const PHONE_RE = /^0\d{8,9}$/;
+
+            document.querySelectorAll('form.lead-form, form.cta-form').forEach(form => {
+                // honeypot against bots (hidden from people and screen readers)
+                const hp = document.createElement('input');
+                hp.type = 'text'; hp.name = 'company_site'; hp.tabIndex = -1; hp.autocomplete = 'off';
+                hp.setAttribute('aria-hidden', 'true');
+                hp.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;clip-path:inset(50%)';
+                form.appendChild(hp);
+
+                const notice = document.createElement('p');
+                notice.className = 'kg-form-notice';
+                notice.innerHTML = 'הפרטים נשלחים למשרד לצורך חזרה אליך בעניין פנייתך בלבד. <a href="../מדיניות-פרטיות/">מדיניות הפרטיות</a>';
+                form.insertAdjacentElement('afterend', notice);
+
+                const status = document.createElement('p');
+                status.className = 'kg-form-status';
+                status.setAttribute('role', 'alert');
+                notice.insertAdjacentElement('afterend', status);
+
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    status.textContent = '';
+                    if (hp.value) return;
+
+                    const name = form.querySelector('input[type="text"]:not([name="company_site"])');
+                    const tel = form.querySelector('input[type="tel"]');
+                    const email = form.querySelector('input[type="email"]');
+                    const phone = (tel.value || '').replace(/[\s-]/g, '');
+                    if (!name.value.trim() || name.value.trim().length < 2) { name.focus(); status.textContent = 'נא למלא שם מלא.'; return; }
+                    if (!PHONE_RE.test(phone)) { tel.focus(); status.textContent = 'נא למלא מספר טלפון תקין.'; return; }
+
+                    const btn = form.querySelector('button[type="submit"]');
+                    const label = btn.textContent;
+                    btn.disabled = true; btn.textContent = 'שולח...';
+
+                    const body = new URLSearchParams({
+                        contact_name: name.value.trim(),
+                        contact_phone: phone,
+                        contact_email: email ? email.value.trim() : '',
+                        subj: 'דף נחיתה גירושין',
+                        contact_message: 'פנייה מדף הנחיתה לגירושין (' + (form.classList.contains('cta-form') ? 'טופס תחתון' : 'טופס עליון') + ')'
+                    });
+                    const params = new URLSearchParams(location.search);
+                    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(k => { if (params.get(k)) body.set(k, params.get(k)); });
+
+                    let ok = false;
+                    try {
+                        const ctrl = new AbortController();
+                        const timer = setTimeout(() => ctrl.abort(), 15000);
+                        const res = await fetch(ENDPOINT, { method: 'POST', body, signal: ctrl.signal });
+                        clearTimeout(timer);
+                        const data = res.ok ? await res.json() : null;
+                        ok = !!(data && Number(data.result) > 0);
+                    } catch (err) { ok = false; }
+
+                    if (ok) {
+                        form.reset();
+                        location.href = THANKS;
+                        return;
+                    }
+                    btn.disabled = false; btn.textContent = label;
+                    status.innerHTML = 'הפרטים לא נשלחו בגלל תקלה זמנית. אפשר לנסות שוב, או ליצור קשר ישירות: <a href="tel:098626688">09-8626688</a> · <a href="https://wa.me/972542626426" target="_blank" rel="noopener">וואטסאפ</a>';
+                });
             });
-        });
+        })();
 
         // Intersection Observer for animations
         const observerOptions = {
