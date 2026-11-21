@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://karen-goldberg-law.com/sitemap.xml
