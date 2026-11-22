@@ -84,7 +84,11 @@
 
     var notice = document.createElement('p');
     notice.className = 'kg-form-notice';
-    notice.innerHTML = NOTICE_HTML;
+    /* בטופס שיש בו שדה על החוב, ההודעה מציינת במפורש שגם פרטי החוב ועיר המגורים נשמרים */
+    var hasDebt = Array.prototype.some.call(form.querySelectorAll('label'), function (l) { return /חוב/.test(l.textContent); });
+    notice.innerHTML = hasDebt
+      ? NOTICE_HTML.replace('הפרטים יישמרו במאגר', 'הפרטים, לרבות גובה החוב ועיר המגורים, יישמרו במאגר')
+      : NOTICE_HTML;
     /* צבע הטקסט כמו כותרות השדות בטופס, כדי שיהיה קריא גם על רקע כהה וגם על רקע בהיר */
     var ref = form.querySelector('.elementor-field-label:not(.elementor-screen-only)');
     if (!ref) {
