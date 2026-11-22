@@ -1,0 +1,154 @@
+/* =========================================================
+   Atrium hero – phase 1 (home page-id-2839, insolvency page-id-3319)
+   Spec: "מפרט יישום סופי לסוכן הראשי - רקע אטריום" v2, 22.11.2026
+   ========================================================= */
+@font-face{font-family:'KG Frank Ruhl';font-style:normal;font-weight:300 900;font-display:swap;src:url(../kg-fonts/frank-ruhl-libre-hebrew.woff2) format('woff2');unicode-range:U+0307-0308,U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'KG Frank Ruhl';font-style:normal;font-weight:300 900;font-display:swap;src:url(../kg-fonts/frank-ruhl-libre-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
+
+body.page-id-2839,body.page-id-3319{
+  --kg-cream:#F4EFE4;--kg-cream-86:rgba(244,239,228,.86);
+  --kg-gold:#C9A961;--kg-gold-300:#E3CB8F;--kg-line:rgba(201,169,97,.38);
+  --kg-serif:'KG Frank Ruhl','Frank Ruhl Libre',Georgia,serif;--kg-sans:Assistant,Arial,sans-serif;
+  --kg-gutter:clamp(24px,6vw,112px);
+}
+body.page-id-2839 a:focus-visible,body.page-id-3319 a:focus-visible,
+body.page-id-2839 summary:focus-visible,body.page-id-3319 summary:focus-visible{outline:2px solid #E3CB8F;outline-offset:4px}
+
+/* ---------- shared hero pieces ---------- */
+.kg-hero{position:relative;overflow:hidden;isolation:isolate;background:#0B0A09;color:var(--kg-cream);font-family:var(--kg-sans)}
+.kg-bg{position:absolute;inset:0;z-index:-3;margin:0}
+.kg-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block;max-width:none}
+.kg-shade{position:absolute;inset:0;z-index:-2;pointer-events:none}
+.kg-frame{position:absolute;inset:120px 24px 24px;border:1px solid var(--kg-line);z-index:1;pointer-events:none}
+.kg-rule{width:72px;height:1px;background:linear-gradient(90deg,transparent,var(--kg-gold),transparent)}
+.kg-credit{position:absolute;left:28px;bottom:6px;z-index:3;font-size:10.5px;line-height:1.4;color:rgba(244,239,228,.6);font-family:var(--kg-sans)}
+.kg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media (prefers-reduced-motion:no-preference){
+  .kg-copy,.kg-areas,.elementor-element-fec4d6 > .elementor-widget-wrap{animation:kgIn .6s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes kgIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+}
+
+/* ---------- header (home: existing Elementor header 652657ab; insolvency: .kg-hd) ---------- */
+.kg-brand{display:flex;flex-direction:column;line-height:1;color:var(--kg-cream)!important;text-decoration:none!important}
+.kg-brand b{font-family:var(--kg-serif);font-weight:500;font-size:27px;letter-spacing:.01em;white-space:nowrap}
+.kg-brand span{font-family:var(--kg-sans);font-size:12px;font-weight:600;letter-spacing:.34em;color:var(--kg-gold);margin-top:8px}
+
+body.page-id-2839 .elementor-element-652657ab:not(.elementor-sticky__spacer){position:absolute;top:0;left:0;right:0;z-index:30;background:linear-gradient(180deg,rgba(8,8,8,.72),rgba(8,8,8,.25))!important;border-bottom:1px solid var(--kg-line);min-height:96px}
+body.page-id-2839 .elementor-element-652657ab.elementor-sticky--active{position:fixed;background:#0B0A09!important}
+body.page-id-2839 .elementor-element-652657ab.elementor-sticky__spacer{display:none!important}
+body.page-id-2839 .elementor-element-652657ab > .elementor-container{max-width:none;min-height:96px;padding:0 var(--kg-gutter);display:flex;align-items:center;gap:24px}
+body.page-id-2839 .elementor-element-652657ab .kg-brand{flex:0 0 auto}
+body.page-id-2839 .elementor-element-652657ab .elementor-element-5dbf1758{flex:1 1 auto;width:auto}
+body.page-id-2839 .elementor-element-652657ab .elementor-element-5f8ea65{flex:0 0 auto;width:auto}
+body.page-id-2839 .elementor-element-1be5d451 .elementor-nav-menu--main .elementor-item{font-family:var(--kg-sans)!important;font-size:15.5px!important;font-weight:400!important;color:var(--kg-cream-86)!important;padding:6px 0!important;margin:0 16px;border-bottom:1px solid transparent}
+body.page-id-2839 .elementor-element-1be5d451 .elementor-nav-menu--main .elementor-item:hover{color:var(--kg-cream)!important;border-bottom-color:var(--kg-gold)}
+body.page-id-2839 .elementor-element-1be5d451 .elementor-nav-menu--main .elementor-item:after,
+body.page-id-2839 .elementor-element-1be5d451 .elementor-nav-menu--main .elementor-item:before{display:none!important}
+body.page-id-2839 .elementor-element-1be5d451 .elementor-nav-menu{justify-content:center}
+body.page-id-2839 .elementor-element-1be5d451 .elementor-menu-toggle{color:var(--kg-cream)!important;background:transparent!important;width:44px;height:44px}
+body.page-id-2839 .elementor-element-1be5d451 .elementor-menu-toggle svg,body.page-id-2839 .elementor-element-1be5d451 .elementor-menu-toggle i{fill:var(--kg-cream)!important;color:var(--kg-cream)!important}
+body.page-id-2839 .elementor-element-1be5d451 .elementor-nav-menu--dropdown{background:#0B0A09!important}
+body.page-id-2839 .elementor-element-1be5d451 .elementor-nav-menu--dropdown a{color:var(--kg-cream-86)!important;background:#0B0A09!important}
+body.page-id-2839 .elementor-element-6b3ef3c .elementor-button,
+.kg-hd .kg-phone{font-family:var(--kg-sans);font-size:15px;font-weight:600;letter-spacing:.08em;color:var(--kg-gold-300)!important;border:1px solid rgba(201,169,97,.7);padding:10px 20px;background:rgba(8,8,8,.35)!important;border-radius:0;box-shadow:none;line-height:1.2;text-decoration:none}
+body.page-id-2839 .elementor-element-1e847b{display:none}
+
+.kg-hd{position:absolute;inset:0 0 auto;z-index:30;height:96px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--kg-gutter);border-bottom:1px solid var(--kg-line);background:linear-gradient(180deg,rgba(8,8,8,.72),rgba(8,8,8,.25));font-family:var(--kg-sans)}
+.kg-hd .kg-nav{display:flex;gap:32px;font-size:15.5px}
+.kg-hd .kg-nav a{color:var(--kg-cream-86);padding:6px 0;border-bottom:1px solid transparent;text-decoration:none}
+.kg-hd .kg-nav a:hover{color:var(--kg-cream);border-bottom-color:var(--kg-gold)}
+.kg-hd .kg-end{display:flex;align-items:center;gap:18px}
+.kg-hd .kg-phone,body.page-id-2839 .elementor-element-6b3ef3c .elementor-button{white-space:nowrap}
+.kg-hd details{display:none;position:relative}
+.kg-hd summary{list-style:none;cursor:pointer;width:44px;height:44px;display:grid;place-items:center}
+.kg-hd summary::-webkit-details-marker{display:none}
+.kg-hd summary span{position:relative;display:block;width:26px;height:16px}
+.kg-hd summary i{position:absolute;right:0;height:1.5px;width:100%;background:var(--kg-cream)}
+.kg-hd summary i:nth-child(1){top:0}.kg-hd summary i:nth-child(2){top:7px;width:68%}.kg-hd summary i:nth-child(3){bottom:0}
+.kg-hd details nav{position:absolute;left:0;top:56px;min-width:220px;background:#0B0A09;border:1px solid var(--kg-line);display:flex;flex-direction:column;padding:8px 0}
+.kg-hd details nav a{padding:12px 20px;color:var(--kg-cream-86);text-decoration:none;font-size:16px}
+
+/* ---------- home hero ---------- */
+.kg-home{min-height:max(760px,100svh);display:grid;grid-template-columns:minmax(0,820px) 1fr;align-items:center;padding:96px var(--kg-gutter) 110px;text-align:right}
+.kg-home .kg-shade{background:linear-gradient(270deg,rgba(8,8,8,.92) 0%,rgba(8,8,8,.82) 42%,rgba(8,8,8,.35) 68%,rgba(8,8,8,.15) 100%),linear-gradient(0deg,rgba(8,8,8,.6),transparent 32%)}
+.kg-home .kg-copy{position:relative;z-index:2}
+.kg-home .kg-h1{font-family:var(--kg-serif);font-weight:500;line-height:1.08!important;text-wrap:balance;text-shadow:0 2px 22px rgba(0,0,0,.4);margin:0;color:var(--kg-cream)}
+.kg-home .kg-h1 .n{display:block;font-size:clamp(48px,5.4vw,82px);color:var(--kg-cream);letter-spacing:.005em}
+.kg-home .kg-h1 .o{display:block;font-size:clamp(26px,2.5vw,38px);color:var(--kg-gold-300);font-weight:400;letter-spacing:.06em;margin-top:14px}
+.kg-home .kg-rule{margin:30px 0 26px}
+.kg-home .kg-sub{font-family:var(--kg-serif);font-size:clamp(20px,1.7vw,25px);color:var(--kg-cream-86);line-height:1.5;margin:0}
+.kg-btn{display:inline-block;font-family:var(--kg-sans);font-weight:600;font-size:16.5px;letter-spacing:.05em;padding:17px 36px;background:var(--kg-gold);color:#111!important;text-decoration:none;transition:background .2s;min-height:44px}
+.kg-btn:hover{background:var(--kg-gold-300)}
+.kg-home .kg-btn{margin-top:40px}
+.kg-areas{position:absolute;inset:auto var(--kg-gutter) 36px;z-index:2;display:flex;flex-wrap:wrap;align-items:center;font-size:14.5px;letter-spacing:.06em;font-family:var(--kg-sans)}
+.kg-areas a{font-family:var(--kg-sans)!important;font-weight:400!important;color:var(--kg-cream-86);padding:12px 18px;border-inline-start:1px solid var(--kg-line);min-height:44px;display:inline-flex;align-items:center;text-decoration:none}
+.kg-areas a:first-child{padding-inline-start:0;border:0}
+.kg-areas a:hover{color:var(--kg-gold-300)}
+
+/* ---------- insolvency hero (existing Elementor section 4a5f5da1 / column fec4d6) ---------- */
+body.page-id-3319 .elementor-3319 .elementor-element.elementor-element-4a5f5da1{position:relative;isolation:isolate;overflow:hidden;background-image:none!important;background-color:#0B0A09!important;min-height:max(700px,92svh);padding-top:150px;padding-bottom:110px}
+body.page-id-3319 .elementor-element-4a5f5da1 > .elementor-background-overlay{display:none!important}
+body.page-id-3319 .elementor-element-4a5f5da1 > .elementor-container,
+body.page-id-3319 .elementor-element-4a5f5da1 .elementor-element-2fd4fbd6,
+body.page-id-3319 .elementor-element-4a5f5da1 .elementor-element-1cd0ed51{background:transparent!important}
+body.page-id-3319 .elementor-element-4a5f5da1 > .elementor-container{position:relative;z-index:2;min-height:0!important}
+body.page-id-3319 .elementor-element-2fd4fbd6 > .elementor-widget-wrap{align-content:center!important;align-items:center!important}
+body.page-id-3319 .elementor-element-4a5f5da1 .kg-shade{background:radial-gradient(70% 70% at 50% 45%,rgba(8,8,8,.80),rgba(8,8,8,.88) 100%)}
+body.page-id-3319 .elementor-element-4a5f5da1 .kg-frame{bottom:0}
+body.page-id-3319 .elementor-element-4a5f5da1::after{content:"";position:absolute;left:50%;bottom:0;width:1px;height:72px;background:linear-gradient(180deg,transparent,var(--kg-gold));z-index:2}
+body.page-id-3319 .elementor-element-fec4d6 .kg-hero-eyebrow{color:var(--kg-gold)!important;font-family:var(--kg-sans)!important;font-weight:600!important;font-size:15px!important;letter-spacing:.22em!important}
+body.page-id-3319 .elementor-element-fec4d6 .kg-hero-name{color:var(--kg-cream)!important;font-size:clamp(44px,4.8vw,72px)!important;line-height:1.14!important}
+body.page-id-3319 .elementor-element-fec4d6 .kg-hero-sub{color:var(--kg-gold-300)!important;font-size:clamp(20px,1.75vw,26px)!important}
+body.page-id-3319 .elementor-element-fec4d6 .kg-hero-text{color:var(--kg-cream-86)!important;font-size:18px!important;line-height:1.85!important}
+body.page-id-3319 .elementor-element-549b56d6 .elementor-button{background:var(--kg-gold)!important;color:#111!important;font-family:var(--kg-sans);font-weight:600;font-size:16.5px;letter-spacing:.05em;padding:17px 36px;border-radius:0;box-shadow:none}
+body.page-id-3319 .elementor-element-549b56d6 .elementor-button:hover{background:var(--kg-gold-300)!important}
+body.page-id-3319 .elementor-element-03a7043{--divider-color:rgba(201,169,97,.6)!important}
+body.page-id-3319 .elementor-element-03a7043 .elementor-divider-separator{width:72px!important;margin:0 auto;border:0!important;height:1px;background:linear-gradient(90deg,transparent,var(--kg-gold),transparent)}
+body.page-id-3319 .elementor-element-03a7043 .elementor-divider-separator::before,
+body.page-id-3319 .elementor-element-03a7043 .elementor-divider-separator::after{display:none!important}
+body.page-id-3319 .elementor-element-4c924e06 .elementor-heading-title,
+body.page-id-3319 .elementor-element-4c924e06 .elementor-heading-title a{color:var(--kg-cream)!important;font-family:var(--kg-sans)!important;font-weight:400!important}
+
+/* ---------- mobile ---------- */
+@media (max-width:767px){
+  .kg-brand b{font-size:21px}.kg-brand span{font-size:10.5px;letter-spacing:.3em;margin-top:6px}
+  .kg-frame{inset:86px 12px 12px}
+  .kg-bg img{object-position:50% 30%}
+  .kg-credit{left:16px;right:auto} /* the site WhatsApp button sits bottom-right */
+  .kg-btn{width:100%;text-align:center;padding:17px 20px}
+
+  body.page-id-2839 .elementor-element-652657ab:not(.elementor-sticky__spacer){min-height:72px}
+  body.page-id-2839 .elementor-element-652657ab > .elementor-container{min-height:72px;padding:0 20px;flex-wrap:nowrap}
+  body.page-id-2839 .elementor-element-6b3ef3c .elementor-button{font-size:13px;padding:8px 13px}
+
+  .kg-hd{height:72px;padding:0 20px}
+  .kg-hd > .kg-nav{display:none}
+  .kg-hd details{display:block}
+  .kg-hd .kg-phone{font-size:13px;padding:8px 13px}
+  .kg-hd .kg-end{gap:10px}
+
+  .kg-home{grid-template-columns:1fr;min-height:100svh;align-content:center;padding:120px 26px 64px;text-align:center}
+  .kg-home .kg-shade{background:linear-gradient(180deg,rgba(8,8,8,.80) 0%,rgba(8,8,8,.86) 40%,rgba(8,8,8,.92) 100%)}
+  .kg-home .kg-copy{display:flex;flex-direction:column;align-items:center}
+  .kg-home .kg-h1 .n{font-size:40px}
+  .kg-home .kg-h1 .o{font-size:23px;margin-top:10px}
+  .kg-home .kg-rule{margin:24px auto 20px}
+  .kg-home .kg-sub{font-size:19px}
+  .kg-home .kg-btn{margin-top:32px}
+  .kg-areas{position:static;justify-content:center;margin-top:40px;font-size:14px;row-gap:12px}
+  .kg-areas a{padding:10px 12px}
+
+  body.page-id-3319 .elementor-3319 .elementor-element.elementor-element-4a5f5da1{min-height:100svh;padding-top:118px;padding-bottom:84px}
+  body.page-id-3319 .elementor-element-4a5f5da1::after{display:none}
+  body.page-id-3319 .elementor-element-fec4d6 .kg-hero-eyebrow{font-size:13px!important;letter-spacing:.18em!important}
+  body.page-id-3319 .elementor-element-fec4d6 .kg-hero-name{font-size:38px!important}
+  body.page-id-3319 .elementor-element-fec4d6 .kg-hero-sub{font-size:19.5px!important}
+  body.page-id-3319 .elementor-element-fec4d6 .kg-hero-text{font-size:17px!important}
+  body.page-id-3319 .elementor-element-549b56d6,body.page-id-3319 .elementor-element-549b56d6 .elementor-button{width:100%}
+}
+
+@media (max-width:400px){
+  .kg-brand b{font-size:19px}
+  .kg-hd{padding:0 14px;gap:10px}
+  .kg-hd .kg-phone,body.page-id-2839 .elementor-element-6b3ef3c .elementor-button{font-size:12.5px;padding:8px 10px;letter-spacing:.04em}
+}
