@@ -46,7 +46,7 @@
     var group = el.closest('.elementor-field-group');
     var label = group && group.querySelector('label');
     var text = (label && label.textContent.trim()) || el.getAttribute('placeholder') || '';
-    return text.replace(/[*:\s]+$/, '').trim();
+    return text.replace(/\(רשות\)/, '').replace(/[*:\s]+$/, '').trim();
   }
 
   function store(key, value) {
@@ -60,7 +60,8 @@
     '.kg-form-notice a{color:inherit;text-decoration:underline}' +
     '.kg-form-status{font-size:15px;font-weight:600;line-height:1.6;margin:8px 0 0;text-align:center;color:#b3261e;background:#fff;border:1px solid #e8b4b0;border-radius:6px;padding:6px 10px}' +
     '.kg-form-status:empty{display:none}' +
-    '.kg-form-status a{color:inherit;text-decoration:underline}';
+    '.kg-form-status a{color:inherit;text-decoration:underline}' +
+    '.elementor-form .elementor-select-wrapper select option{color:#222;background:#fff}';
   var style = document.createElement('style');
   style.id = 'kg-form-style';
   style.textContent = css;
@@ -87,7 +88,7 @@
     /* בטופס שיש בו שדה על החוב, ההודעה מציינת במפורש שגם פרטי החוב ועיר המגורים נשמרים */
     var hasDebt = Array.prototype.some.call(form.querySelectorAll('label'), function (l) { return /חוב/.test(l.textContent); });
     notice.innerHTML = hasDebt
-      ? NOTICE_HTML.replace('הפרטים יישמרו במאגר', 'הפרטים, לרבות גובה החוב ועיר המגורים, יישמרו במאגר')
+      ? NOTICE_HTML.replace('הפרטים יישמרו במאגר', 'הפרטים, לרבות עיר המגורים וטווח גובה החוב אם נבחר, יישמרו במאגר')
       : NOTICE_HTML;
     /* צבע הטקסט כמו כותרות השדות בטופס, כדי שיהיה קריא גם על רקע כהה וגם על רקע בהיר */
     var ref = form.querySelector('.elementor-field-label:not(.elementor-screen-only)');
